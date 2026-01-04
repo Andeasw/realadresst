@@ -1,7 +1,7 @@
 const CONFIG = {
   MAX_RETRIES: 5,
   TIMEOUT_MS: 3000,
-  USER_AGENT: 'IDConsole/7.0 (CloudflareWorker)',
+  USER_AGENT: 'IDConsole/1.0 (CloudflareWorker)',
 }
 
 export default {
@@ -212,6 +212,13 @@ export default {
     }
     .btn-del:hover { background: #ff7675; color: #fff; }
 
+    .footer {
+      text-align: center; padding: 20px 0 5px; color: #666; font-size: 0.9rem; font-weight: 700;
+      display: flex; align-items: center; justify-content: center; gap: 8px; opacity: 0.8;
+    }
+    .gh-link { color: #333; transition: transform 0.2s, color 0.2s; display: flex; align-items: center; }
+    .gh-link:hover { color: var(--secondary); transform: scale(1.1); }
+
     .toast {
       position: fixed; top: 40px; left: 50%; transform: translate(-50%, -200%);
       background: #fff; padding: 12px 35px; border-radius: 50px;
@@ -301,11 +308,20 @@ export default {
         </table>
       </div>
     </div>
+
+    <div class="footer">
+      <span>&copy; <span id="year"></span> By Prince</span>
+      <a href="https://github.com/Andeasw/realadresst" target="_blank" rel="noopener noreferrer" class="gh-link">
+        <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+        </svg>
+      </a>
+    </div>
   </div>
 
   <script nonce="${nonce}">
     const STATE = JSON.parse('${safeState}');
-    const KEY = 'anime_id_history_v9';
+    const KEY = 'anime_id_history_v10';
 
     function esc(s) { return String(s||'').replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m])); }
     
@@ -371,6 +387,8 @@ export default {
         renderHistory();
       }
     });
+
+    document.getElementById('year').textContent = new Date().getFullYear();
 
     renderHistory();
   </script>
